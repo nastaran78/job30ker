@@ -1,0 +1,7 @@
+selenium==4.31.0
+python-telegram-bot==22.0
+telegramify-markdown
+python-dotenv
+jinja2
+openai
+google-genai==1.7.0
