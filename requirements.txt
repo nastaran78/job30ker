@@ -5,3 +5,5 @@ python-dotenv
 jinja2
 openai
 google-genai==1.7.0
+pytest
+pytest-asyncio

@@ -6,13 +6,13 @@ from notification.telegram import Notifier
 from scraper.scrape import search_jobs
 
 
-def get_llm_client(model_name: str):
-    """Return the appropriate LLM client based on the model name."""
-    if model_name.lower() == "gemini":
-        return GeminiClient(GOOGLE_API_KEY)
-    else:
+class LLMFactory:
+    @staticmethod
+    def get_client(model_name: str):
+        """Return the appropriate LLM client based on the model name."""
+        if model_name.lower() == "gemini":
+            return GeminiClient(GOOGLE_API_KEY)
         raise ValueError(f"Unsupported model name: {model_name}")
-
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Job Matching System")
@@ -25,5 +25,5 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     notifier = Notifier()
-    llm_client = get_llm_client(args.model)
+    llm_client = LLMFactory.get_client(args.model)
     search_jobs(llm_client, notifier)
